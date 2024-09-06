@@ -19,6 +19,6 @@ provisioner "local-exec" {
   command = "echo ${aws_instance.final-banking-server.public_ip} > inventory"
   }
 provisioner "local-exec" {
-  command = "ansible-playbook /var/lib/jenkins/workspace/FINAL_BANKING_PROJECT/terraform/ansibleplaybook.yml
+  command = "ansible-playbook /var/lib/jenkins/workspace/FINAL_BANKING_PROJECT/terraform/ansibleplaybook.yml"
   }
 }
