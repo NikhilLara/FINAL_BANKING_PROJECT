@@ -1,4 +1,4 @@
-resource "aws_instance" "final-banking-server"
+resource "aws_instance" "final-banking-server" {
 ami = "ami-0e86e20dae9224db8"
 instance_type = "t2.micro"
 key_name = "keypair2"
