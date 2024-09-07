@@ -1,4 +1,4 @@
-- name : Configure Docker on EC2 Instances
+- name : Configure Docker  & Grafana on EC2 Instances
   hosts : all
   become: true
   connection : ssh
@@ -14,3 +14,32 @@
 
   - name: Deploy Docker Container
     command: docker run -itd -p 8090:8081 nikhillara1989/final_banking_project:1.0
+
+  - name: updating apt
+    command : sudo apt-get update
+
+  - name: Add Grafana repository
+      apt_repository:
+        repo: deb https://packages.grafana.com/oss/deb stable main
+        state: present
+        keys: "https://packages.grafana.com/gpg/grafana.asc"
+
+  - name: Update apt cache
+      apt:
+        update_cache: yes
+
+  - name: Install Grafana
+      apt:
+        name: grafana
+        state: latest
+
+  - name: Start Grafana service
+      service:
+        name: grafana-server
+        state: started
+
+  - name:   
+ Enable Grafana service on boot
+      service:
+        name: grafana-server
+        enabled: yes
